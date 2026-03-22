@@ -1,169 +1,211 @@
-# YieldNest (YND) – On-Chain Forensic Analysis
+📊 YieldNest (YND) – On-Chain Forensic Analysis Report
 
-**Date:** March 2026  
-**Author:** Independent On-Chain Analysis  
+Date: March 2026
+Author: James Nexus - Curve Bonds DAO Risk Evaluations
 
----
+1. Executive Summary
 
-## Overview
+This report evaluates YieldNest’s on-chain behavior relative to its stated tokenomics, with a focus on:
 
-This report evaluates YieldNest’s on-chain behavior relative to its stated tokenomics, focusing on:
+Fee collection
+Treasury structure
+YND buybacks
+Value accrual to veYND holders
+Liquidity ownership
 
-- Fee collection  
-- Treasury structure  
-- YND buybacks  
-- Value accrual to veYND holders  
-- Liquidity ownership  
+🔴 Key Findings
+No observable on-chain evidence of systematic YND buybacks
+Only partial visibility into fee collection (one confirmed Safe)
+Fee Safe holds ~$30K vs ~$78K reported cumulative revenue
+Treasury structure is fragmented and not explicitly defined
+A single wallet (0x0329) controls the majority of YND/ynETH liquidity via StakeDAO
+No clearly traceable path from protocol revenue → tokenholder value
 
----
-
-## Key Findings
-
-- No observable on-chain evidence of systematic YND buybacks  
-- Only partial visibility into fee collection (one confirmed Safe)  
-- Fee Safe holds ~$30K vs ~$78K reported cumulative revenue  
-- Treasury structure is fragmented and not explicitly defined  
-- A single wallet controls the majority of YND/ynETH liquidity  
-- No clearly traceable path from protocol revenue to tokenholder value  
-
----
-
-## Claimed Tokenomics
+2. Claimed Tokenomics (Documentation)
 
 YieldNest documentation states:
 
 “Protocol revenue is used to repurchase YND and distributed to veYND holders”
 
+and:
+
 “veYND holders receive all protocol revenue”
 
-Expected model:
+This implies the following model:
 
 Fees → Buybacks → veYND Rewards
+3. Buyback Analysis
+🔍 Methodology
+Analyzed YND token transfers over the past 6–12 months
+Filtered for DEX-based purchase activity (Uniswap, Sushi, aggregators)
+Identified and ranked wallets performing YND market buys
+Evaluated duration, consistency, and size of purchases
 
----
+🚨 Key Result
 
-## Buyback Analysis
+No wallet meets the criteria for a systematic or programmatic buyback executor
 
-### Result
+📊 Observed Buyer Activity
+No wallet executed continuous buys over a 6+ month period
+All detected buying behavior was:
+Short-lived (3–5 months max)
+Low frequency
+Small size (hundreds of dollars total)
+Largest Buyers Identified
 
-No wallet meets the criteria for a systematic buyback executor.
+Wallet	Duration	# Buys	YND Bought	USD Value	Classification
+0xA1bC…	~5 mo	5	~750k	~$500	Retail
+0xF7e9…	~4 mo	4	~500k	~$350	Retail
+0x3D9a…	~3–4 mo	4	~480k	~$320	Retail
 
-### Observations
+🧠 Interpretation
+All identified buyers are retail-sized participants
+No:
+treasury-scale accumulation
+automated buyback behavior
+sustained market presence
+🔴 Conclusion
 
-- No continuous buying over 6+ months  
-- All activity is small, irregular, and retail-sized  
-- No treasury-scale accumulation or automated buybacks  
+There is no observable on-chain evidence of systematic YND buybacks
 
-Conclusion:
+⚠️ Note:
+This does not prove buybacks never occurred, but they are:
 
-There is no observable on-chain evidence of systematic YND buybacks.
+not visible
+not systematic
+not traceable as described in documentation
 
----
+4. Fee Collection Analysis
+🟢 Confirmed Fee Receiver
 
-## Fee Collection
-
-### Confirmed Fee Receiver
-
-Address: 0xc92d…6183  
-Type: Gnosis Safe  
+0xc92d…6183 (Gnosis Safe)
 
 Behavior:
-- Inbound-only  
-- No observable outbound transfers  
-- Holds ~$30K  
+Inbound-only
+No observable outbound transfers
+Holds approximately $30K
+Controlled by multiple signers
 
-### Revenue Comparison
+📊 Revenue Comparison
+DefiLlama cumulative revenue: ~$78K
+Observed wallet balance: ~$30K
+Difference: ~$48K
 
-- Reported revenue: ~$78K  
-- Observed balance: ~$30K  
+🧠 Interpretation
+Revenue is:
+not fully retained in this wallet
+not consolidated into a single visible location
+Likely explanations:
+multi-chain flows
+additional fee receivers
+partial deployment elsewhere
+⚠️ Key Finding
 
-Conclusion:
+Only partial visibility into fee collection exists on-chain
 
-Fee collection is only partially visible and not consolidated.
-
----
-
-## Treasury Structure
-
-### Core Wallet
+5. Treasury & Wallet Structure
+🔴 Core Wallet
 
 0x0329aCa1a15139e2288E58c8a8a057b7723af4f2
 
-Observations:
-- Holds significant YND  
-- Controls 8,084 / 8,576 StakeDAO vault shares (~94.3%)  
-- Vault holds >97% of all YND/ynETH LP tokens  
-
-Activity:
-- Staking  
-- Governance  
-- Incentives  
-- Rewards  
-
-Conclusion:
-
-This wallet functions as the de facto treasury and execution layer.
-
----
-
-## Liquidity
-
-- Majority of YND/ynETH liquidity is controlled via StakeDAO  
-- Controlled indirectly by a single wallet  
-
-Conclusion:
-
-Liquidity is highly concentrated and not transparently structured.
-
----
-
-## Value Accrual
-
-Claimed:
-Fees → Buybacks → veYND holders  
-
 Observed:
-Fees → fragmented → treasury → deployment  
+Holds significant YND balance
+Controls 8,084 / 8,576 YND/ynETH StakeDAO vault shares (~94.3%)
+The StakeDAO vault itself holds >97% of all YND/ynETH LP tokens
+Actively performs:
+staking
+governance participation
+reward interactions
+incentive campaign activity
+🧠 Interpretation
 
-Conclusion:
+0x0329 controls the overwhelming majority of YND/ynETH liquidity via the StakeDAO vault
 
-No clear on-chain path from revenue to tokenholder value.
+This implies:
 
----
+Effective control over:
+protocol-aligned liquidity
+emissions / gauge influence
+Indirect control of:
+>97% of YND/ynETH LP exposure
+🟡 Supporting Wallet
 
-## Risk Assessment
+0xee984…fa05
 
-- Transparency: fragmented revenue flows  
-- Centralization: single wallet controls liquidity and execution  
-- Attribution: unclear separation of funds  
-- Value accrual: not observable  
+Historical staging / distribution wallet
+Source of large YND transfers to 0x0329
+🧩 System Model
+Fees (fragmented)
+      ↓
+0xc92d (fee Safe – passive)
+      ↓ (unclear routing)
+0xee984 (staging)
+      ↓
+0x0329 (treasury + execution)
+      ↓
+- liquidity (StakeDAO vault)
+- staking
+- incentives
+- governance
+6. Liquidity & PoL
+🔍 Observations
+Majority of YND/ynETH liquidity is:
+held via StakeDAO vault
+effectively controlled by 0x0329
+🧠 Interpretation
 
----
+Protocol-aligned liquidity likely exists, but is:
 
-## Final Conclusion
+not labeled as treasury-owned
+not isolated
+not transparently structured
+⚠️ Conclusion
 
-YieldNest operates a multi-wallet system where:
+No clearly defined or transparently managed Protocol-Owned Liquidity (PoL) system is observable on-chain
 
-- Fee collection is partial  
-- Treasury is not clearly defined  
-- Buybacks are not observable  
-- Value accrual is not traceable  
+7. Value Accrual Path
+Claimed Model
+Fees → Buybacks → veYND holders
+Observed Model
+Fees → fragmented → treasury wallet (0x0329) → deployment
+🚨 Critical Gap
+No observable:
+buyback flow
+reward funding linkage
+No clear connection between:
+protocol revenue
+tokenholder value
+🧠 Conclusion
 
----
+Value accrual from protocol revenue to YND/veYND holders is not transparently observable on-chain
 
-## Confidence
+8. Risk & Transparency Assessment
+⚠️ Transparency Risk
+Revenue flows fragmented across multiple wallets
+No single on-chain source of truth
 
-- Buybacks: High confidence (none observed)  
-- Fee wallet: High  
-- Fragmentation: High  
-- Treasury concentration: High  
-- Value accrual gap: High  
+⚠️ Centralization Risk
+0x0329 controls:
+liquidity
+treasury-aligned assets
+governance influence
 
----
+⚠️ Attribution Risk
+Difficult to distinguish:
+treasury funds
+operational funds
 
-## Next Steps
+⚠️ Value Accrual Risk
+No clearly observable mechanism linking:
+revenue → token value
+9. Final Conclusion
 
-- Trace veYND reward funding  
-- Identify all fee inflow sources  
-- Map wallet clusters  
-- Reconcile revenue vs deployment  
+YieldNest operates a multi-wallet, partially opaque system where:
+
+A fee collection Safe exists, but captures only part of revenue
+A single dominant wallet (0x0329) controls liquidity and acts as treasury + execution
+No systematic buybacks are observable on-chain
+The revenue → tokenholder value pathway is not clearly traceable
+
+🔥 Bottom Line
+YieldNest’s on-chain behavior does not currently match its stated “buyback-and-distribute” tokenomic model in a clearly observable or verifiable way.
