@@ -27,13 +27,12 @@ YieldNest documentation states:
 
 “Protocol revenue is used to repurchase YND and distributed to veYND holders”
 
-and:
-
-“veYND holders receive all protocol revenue”
+and: “veYND holders receive all protocol revenue”
 
 This implies the following model:
 
 Fees → Buybacks → veYND Rewards
+
 3. Buyback Analysis
 🔍 Methodology
 Analyzed YND token transfers over the past 6–12 months
@@ -51,8 +50,8 @@ All detected buying behavior was:
 Short-lived (3–5 months max)
 Low frequency
 Small size (hundreds of dollars total)
-Largest Buyers Identified
 
+Largest Buyers Identified
 Wallet	Duration	# Buys	YND Bought	USD Value	Classification
 0xA1bC…	~5 mo	5	~750k	~$500	Retail
 0xF7e9…	~4 mo	4	~500k	~$350	Retail
@@ -65,12 +64,10 @@ treasury-scale accumulation
 automated buyback behavior
 sustained market presence
 🔴 Conclusion
-
 There is no observable on-chain evidence of systematic YND buybacks
 
 ⚠️ Note:
 This does not prove buybacks never occurred, but they are:
-
 not visible
 not systematic
 not traceable as described in documentation
@@ -99,41 +96,40 @@ Likely explanations:
 multi-chain flows
 additional fee receivers
 partial deployment elsewhere
-⚠️ Key Finding
 
+⚠️ Key Finding
 Only partial visibility into fee collection exists on-chain
 
 5. Treasury & Wallet Structure
 🔴 Core Wallet
-
 0x0329aCa1a15139e2288E58c8a8a057b7723af4f2
 
 Observed:
 Holds significant YND balance
 Controls 8,084 / 8,576 YND/ynETH StakeDAO vault shares (~94.3%)
 The StakeDAO vault itself holds >97% of all YND/ynETH LP tokens
+
 Actively performs:
 staking
 governance participation
 reward interactions
 incentive campaign activity
-🧠 Interpretation
 
+🧠 Interpretation
 0x0329 controls the overwhelming majority of YND/ynETH liquidity via the StakeDAO vault
 
 This implies:
-
 Effective control over:
 protocol-aligned liquidity
 emissions / gauge influence
 Indirect control of:
 >97% of YND/ynETH LP exposure
+
 🟡 Supporting Wallet
-
 0xee984…fa05
-
 Historical staging / distribution wallet
 Source of large YND transfers to 0x0329
+
 🧩 System Model
 Fees (fragmented)
       ↓
@@ -147,18 +143,19 @@ Fees (fragmented)
 - staking
 - incentives
 - governance
+
 6. Liquidity & PoL
 🔍 Observations
 Majority of YND/ynETH liquidity is:
 held via StakeDAO vault
 effectively controlled by 0x0329
+
 🧠 Interpretation
-
 Protocol-aligned liquidity likely exists, but is:
-
 not labeled as treasury-owned
 not isolated
 not transparently structured
+
 ⚠️ Conclusion
 
 No clearly defined or transparently managed Protocol-Owned Liquidity (PoL) system is observable on-chain
@@ -168,6 +165,7 @@ Claimed Model
 Fees → Buybacks → veYND holders
 Observed Model
 Fees → fragmented → treasury wallet (0x0329) → deployment
+
 🚨 Critical Gap
 No observable:
 buyback flow
@@ -175,8 +173,8 @@ reward funding linkage
 No clear connection between:
 protocol revenue
 tokenholder value
-🧠 Conclusion
 
+🧠 Conclusion
 Value accrual from protocol revenue to YND/veYND holders is not transparently observable on-chain
 
 8. Risk & Transparency Assessment
